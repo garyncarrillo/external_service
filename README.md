@@ -7,10 +7,13 @@ django-admin startproject mysite
 git init
 
 # add gitignorefile
-touche .gitignore   
+touch .gitignore   
 
 # runserver with python on DJango
 python manage.py runserver
+
+# create app into the main project
+python manange.py startapp name_app (poll)
 
 # add django tutorial
 https://docs.djangoproject.com/en/3.2/intro/tutorial01/
