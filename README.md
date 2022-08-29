@@ -29,11 +29,14 @@ python manage.py shell
 
 # import models of microservices or microapp
 from polls.models import Question, Choice
+
+# data_time fields
+from django.utils import timezone
 # get all elements a models
 Question.objects.all()
 
 q =  Question(question_text='Cual es el mejor curso de platzi', pub_date= timezone.now())
 q.save()
 
-# data_time fields
-from django.utils import timezone
+
+pip install django-enviro

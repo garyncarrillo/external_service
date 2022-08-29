@@ -11,19 +11,26 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 
 from pathlib import Path
+import os
+import secrets
+from environ import Env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-*4)pf068$f3qi!7j177e!v3kg*4h+&4m!teu&^m(we#zx==gvm'
+# SECRET_KEY = 'django-insecure-*4)pf068$f3qi!7j177e!v3kg*4h+&4m!teu&^m(we#zx==gvm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+env = Env()
+env.read_env(os.path.join(BASE_DIR, '.env'))
+SECRET_KEY = env.str('SECRET_KEY', default=('' if not DEBUG else 'xxx'))
+DATA_BASE_NAME = env.str('DATA_BASE_NAME', default=('' if not DEBUG else 'xxx'))
 
 ALLOWED_HOSTS = []
 
@@ -38,6 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #'django-enviro',
 ]
 
 MIDDLEWARE = [
@@ -77,7 +85,7 @@ WSGI_APPLICATION = 'external_service.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': BASE_DIR / DATA_BASE_NAME,
     }
 }
 
