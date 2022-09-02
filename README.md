@@ -38,5 +38,22 @@ Question.objects.all()
 q =  Question(question_text='Cual es el mejor curso de platzi', pub_date= timezone.now())
 q.save()
 
-
+#install library to read .env
 pip install django-enviro
+
+# clear iteractive console
+import os
+ os.system('clear')
+
+ # other form to save record on model
+ Question(question_text= '¿Cual es la mejor escuela de platzi?', pub_date=timezone.now()).save()
+
+ # get element by one record
+Question.objects.get(pk=1)
+
+# get element by mutlples records
+ Question.objects.filter(pub_date__year=timezone.now().year)
+ Question.objects.filter(question_text__startswith='Cual')
+
+#create relathionship with other model
+Question.objects.get(pk=1).choice_set.create(choice_text="Curso basico de python", votes=0)
