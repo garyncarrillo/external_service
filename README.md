@@ -57,3 +57,8 @@ Question.objects.get(pk=1)
 
 #create relathionship with other model
 Question.objects.get(pk=1).choice_set.create(choice_text="Curso basico de python", votes=0)
+
+# create admin view step no 1
+python manage.py createsuperuser
+
+# MTV (model, template and view)
